@@ -1,7 +1,7 @@
-# Docker LAMPX
+# Docker
 
 Docker Container with Apache, PHP, cAdvisor, MySQL, phpMyAdmin  
-Just have to use this command :  
+Command :  
 ``docker-compose up``
 
 Capture d'écran de cAdvisor :
