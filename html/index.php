@@ -36,13 +36,14 @@
 
         <h2>Database Connection</h2>
         <?php
-        try {
-            $db = new PDO('mysql:host=dockercoaching-mysql-1;dbname=mydatabase', 'myuser', 'mypassword');
-            echo "Connection successful!";
-        } catch (PDOException $e) {
-            echo "Error!: " . $e->getMessage();
-        }
-        ?>
+try {
+    $db = new PDO('mysql:host=dockercoaching-mysql-1;dbname=mydatabase', 'root', '');
+    echo "Connection successful!";
+} catch (PDOException $e) {
+    echo "Error!: " . htmlspecialchars($e->getMessage(), ENT_QUOTES, 'UTF-8');
+}
+?>
+
     </main>
 </body>
 </html>
