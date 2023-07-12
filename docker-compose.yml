@@ -1,0 +1,48 @@
+version: '3'
+services:
+  apache:
+    image: httpd:latest
+    ports:
+      - 80:80
+    volumes:
+      - ./html:/usr/local/apache2/htdocs/
+    depends_on:
+      - php
+
+  php:
+    image: php:7.2-apache
+    ports:
+      - 9000:9000
+    volumes:
+      - ./html:/var/www/html/
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql:latest
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_USER=root
+    volumes:
+      - ./mysql:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    ports:
+      - 8082:80
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=mysql
+    depends_on:
+      - mysql
+
+  cadvisor:
+    image: google/cadvisor:latest
+    ports:
+      - 8081:8080
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:rw
+      - /sys:/sys:ro
+      - /var/lib/docker:/var/lib/docker:ro
